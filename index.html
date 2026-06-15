@@ -100,7 +100,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Helvetica Neu
   @keyframes correctPop { 0%{transform:scale(1)} 30%{transform:scale(1.15)} 100%{transform:scale(1)} }
   .logo-img.wrong { animation: wrongShake 0.5s ease; }
   @keyframes wrongShake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-5px)} 80%{transform:translateX(5px)} }
- db91749b981bf21ca8402f1790c98d5015aea0f6
+ 
 
 .options-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; width:100%; padding:0 4px; }
 .option-btn { padding:13px 8px; border:2px solid #e9ecef; border-radius:14px; background:#fff; color:#1d2129; font-size:14px; font-weight:600; cursor:pointer; transition:all 0.2s; min-height:54px; display:flex; align-items:center; justify-content:center; text-align:center; }
@@ -130,7 +130,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Helvetica Neu
   .option-btn.dim { border-color: #f0f2f5; background: #f8f9fa; color: #c1c9d2; }
   .option-btn.new-q { animation: fadeInQ 0.22s ease-out forwards; }
   @keyframes fadeInQ { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
- db91749b981bf21ca8402f1790c98d5015aea0f6
+ 
 
 /* ====== 结果页 ====== */
 .result-card { background:#fff; border-radius:20px; padding:20px 16px; text-align:center; box-shadow:0 2px 12px rgba(0,0,0,0.06); margin:0; flex:1; overflow-y:auto; }
@@ -237,7 +237,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Helvetica Neu
     .timer-bar { background: #3a3a5c; }
     .result-history h4 { color: #6c757d; }
   }</style>
- db91749b981bf21ca8402f1790c98d5015aea0f6
+ 
 </head>
 <body>
 <div class="container">
@@ -574,7 +574,7 @@ async function nextQ() {
       grid.appendChild(btn);
     });
   }, 60);
- db91749b981bf21ca8402f1790c98d5015aea0f6
+ 
 
   var tip = document.getElementById('progressTip');
   if (mode === 'timed') tip.innerHTML = '⏱️ 剩余 <strong>' + Math.ceil(S.timedRem) + '</strong> 秒';
@@ -598,7 +598,7 @@ function pickOpt(idx) {
   S.opts.forEach((c, i) => {
     if (c.name === S.current.name) btns[i].classList.add('correct');
   });
- db91749b981bf21ca8402f1790c98d5015aea0f6
+ 
   if (!ok) btns[idx].classList.add('wrong');
 
   S.total++;
