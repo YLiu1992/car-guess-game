@@ -158,20 +158,20 @@
 
   /* Logo 白底卡片 */
   .logo-card {
-    background: #fff; border-radius: 20px;
-    width: 160px; height: 160px;
+    background: #fff; border-radius: 24px;
+    width: 200px; height: 200px;
     display: flex; align-items: center; justify-content: center;
     box-shadow: 0 4px 20px rgba(0,0,0,0.09), 0 1px 4px rgba(0,0,0,0.05);
     margin-bottom: 14px; position: relative; overflow: hidden; flex-shrink: 0;
   }
   .logo-card::before {
     content: ''; position: absolute; inset: 0;
-    border: 3px solid #f0f2f5; border-radius: 20px; pointer-events: none;
+    border: 3px solid #f0f2f5; border-radius: 24px; pointer-events: none;
   }
 
   /* 骨架屏 */
   .logo-skeleton {
-    width: 100px; height: 100px;
+    width: 130px; height: 130px;
     background: linear-gradient(90deg, #f0f2f5 25%, #e9ecef 50%, #f0f2f5 75%);
     background-size: 200% 100%;
     animation: shimmer 1.2s infinite; border-radius: 12px; position: absolute;
@@ -179,7 +179,7 @@
   @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
 
   .logo-img {
-    width: 105px; height: 105px; object-fit: contain;
+    width: 140px; height: 140px; object-fit: contain;
     position: relative; z-index: 1; transition: transform 0.3s;
   }
   .logo-img.loaded { animation: logoIn 0.4s ease-out; }
@@ -210,6 +210,8 @@
   .option-btn.wrong { border-color: #ff4d4f; background: #fff2f0; color: #cf1322; }
   .option-btn.disabled { opacity: 0.4; }
   .option-btn.dim { border-color: #f0f2f5; background: #f8f9fa; color: #c1c9d2; }
+  .option-btn.new-q { animation: fadeInQ 0.22s ease-out forwards; }
+  @keyframes fadeInQ { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
   /* 进度提示 */
   .progress-tip { text-align: center; font-size: 12px; color: #868e96; margin-top: 12px; padding-bottom: 8px; }
@@ -265,9 +267,9 @@
   /* ====== 响应式断点 ====== */
   /* iPhone SE / 小屏 */
   @media (max-width: 374px) {
-    .logo-card { width: 140px; height: 140px; }
-    .logo-img { width: 90px; height: 90px; }
-    .logo-skeleton { width: 80px; height: 80px; }
+    .logo-card { width: 170px; height: 170px; }
+    .logo-img { width: 115px; height: 115px; }
+    .logo-skeleton { width: 100px; height: 100px; }
     .mode-card { padding: 12px 10px; min-height: 80px; }
     .mode-card .icon { font-size: 28px; }
     .option-btn { font-size: 13px; min-height: 50px; }
@@ -277,17 +279,17 @@
 
   /* iPhone 标准 */
   @media (min-width: 375px) and (max-width: 413px) {
-    .logo-card { width: 155px; height: 155px; }
-    .logo-img { width: 100px; height: 100px; }
-    .logo-skeleton { width: 90px; height: 90px; }
+    .logo-card { width: 190px; height: 190px; }
+    .logo-img { width: 125px; height: 125px; }
+    .logo-skeleton { width: 110px; height: 110px; }
   }
 
   /* 大屏手机 / 平板竖屏 */
   @media (min-width: 500px) {
     .container { padding: 16px; }
-    .logo-card { width: 180px; height: 180px; }
-    .logo-img { width: 120px; height: 120px; }
-    .logo-skeleton { width: 110px; height: 110px; }
+    .logo-card { width: 240px; height: 240px; }
+    .logo-img { width: 165px; height: 165px; }
+    .logo-skeleton { width: 145px; height: 145px; }
     .mode-card { min-height: 96px; }
     .mode-card .icon { font-size: 36px; }
     .result-emoji { font-size: 64px; }
@@ -297,8 +299,8 @@
   @media (orientation: landscape) and (max-height: 500px) {
     .home-top { padding: 8px 0 6px; }
     .home-top h1 { font-size: 22px; }
-    .logo-card { width: 130px; height: 130px; margin-bottom: 8px; }
-    .logo-img { width: 85px; height: 85px; }
+    .logo-card { width: 150px; height: 150px; margin-bottom: 6px; }
+    .logo-img { width: 100px; height: 100px; }
     .mode-grid { grid-template-columns: repeat(4, 1fr); gap: 8px; }
     .mode-card { min-height: 72px; padding: 10px 8px; }
     .mode-card .icon { font-size: 24px; margin-bottom: 2px; }
@@ -680,13 +682,16 @@ async function nextQ() {
   // 选项UI
   const grid = document.getElementById('optGrid');
   grid.innerHTML = '';
-  S.opts.forEach((c, i) => {
-    const btn = document.createElement('button');
-    btn.className = 'option-btn';
-    btn.textContent = c.car_name || c.name;
-    btn.onclick = () => pickOpt(i);
-    grid.appendChild(btn);
-  });
+  // 延迟入场动画：旧按钮消失后再显示新按钮
+  setTimeout(() => {
+    S.opts.forEach((c, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'option-btn new-q';
+      btn.textContent = c.car_name || c.name;
+      btn.onclick = () => pickOpt(i);
+      grid.appendChild(btn);
+    });
+  }, 60);
 
   // 进度提示
   const tip = document.getElementById('progressTip');
@@ -711,7 +716,7 @@ async function pickOpt(idx) {
   const btns = document.querySelectorAll('.option-btn');
   const imgEl = document.getElementById('logoImg');
 
-  btns.forEach(b => b.classList.add('disabled'));
+  btns.forEach(b => { b.classList.remove('correct', 'wrong', 'dim'); b.classList.add('disabled'); });
   S.opts.forEach((c, i) => {
     if (c.name === S.current.name) btns[i].classList.add('correct');
   });
