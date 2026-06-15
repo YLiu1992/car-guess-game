@@ -68,7 +68,6 @@ body { font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Helvetica Neu
 .logo-card { background:#fff; border-radius:20px; width:160px; height:160px; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 20px rgba(0,0,0,0.09),0 1px 4px rgba(0,0,0,0.05); margin-bottom:14px; position:relative; overflow:hidden; flex-shrink:0; }
 .logo-card::before { content:''; position:absolute; inset:0; border:3px solid #f0f2f5; border-radius:20px; pointer-events:none; }
 
-<<<<<< HEAD
   /* Logo 白底卡片 */
   .logo-card {
     background: #fff; border-radius: 24px;
@@ -112,7 +111,6 @@ body { font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Helvetica Neu
 .option-btn.disabled { opacity:0.4; }
 .option-btn.dim { border-color:#f0f2f5; background:#f8f9fa; color:#c1c9d2; }
 
-<<<<<< HEAD
   /* 选项按钮 */
   .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%; padding: 0 4px; }
   .option-btn {
@@ -169,7 +167,6 @@ body { font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Helvetica Neu
 .history-card .row .val { font-size:17px; font-weight:800; color:#1877f2; }
 .history-card .row .lbl { font-size:10px; color:#868e96; }
 
-<<<<<< HEAD
   /* 历史页 */
   .history-card { background: #fff; border-radius: 14px; padding: 12px 14px; margin: 6px 0; box-shadow: 0 1px 4px rgba(0,0,0,0.05); }
   .history-card .meta { display: flex; justify-content: space-between; font-size: 11px; color: #868e96; margin-bottom: 6px; }
@@ -567,7 +564,6 @@ async function nextQ() {
 
   var grid = document.getElementById('optGrid');
   grid.innerHTML = '';
-<<<<<< HEAD
   // 延迟入场动画：旧按钮消失后再显示新按钮
   setTimeout(() => {
     S.opts.forEach((c, i) => {
@@ -598,7 +594,6 @@ function pickOpt(idx) {
   var btns = document.querySelectorAll('.option-btn');
   var imgEl = document.getElementById('logoImg');
 
-<<<<<< HEAD
   btns.forEach(b => { b.classList.remove('correct', 'wrong', 'dim'); b.classList.add('disabled'); });
   S.opts.forEach((c, i) => {
     if (c.name === S.current.name) btns[i].classList.add('correct');
